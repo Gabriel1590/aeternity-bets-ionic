@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border" >
+  <ion-toolbar color="aet">
+    <ion-title>Aeternity Bets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-title class="ion-text-center" color="dark">Welcome</ion-title>
+
+  <form #formulario="ngForm"> 
+    <div>
+      <ion-label class="white">Email</ion-label> 
+      <ion-input type="email" placeholder="Enter your email"
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                name="email" class="input"
+                [(ngModel)]="user.email"
+                required>
+      </ion-input>
+    </div>
+
+    <div>
+      <ion-label class="white">Password</ion-label>
+      <ion-input type="password" placeholder="Enter your password"
+                name="password" class="input"
+                [(ngModel)]="user.password"
+                required>
+      </ion-input>
+    </div>
+  </form>
+
+  <ion-button expand=full type="submit"
+              [disabled]="formulario.invalid"
+              shape="round"  color="aet"
+              mode="ios" (click)="onLogin()">
+    Login
+  </ion-button>
+  
+  <ion-button expand="full" routerLink="/register" 
+              mode="ios" shape="round" 
+              class="margin-top-null" color="aet">
+    Create Account
+  </ion-button>
+</ion-content>

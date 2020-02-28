@@ -6,16 +6,36 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+// import { Crypto } from '@aeternity/aepp-sdk/es';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from '../environments/environment';
+import { ComponentsModule } from './components/components.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    ComponentsModule,
+    HttpClientModule,
+  ],
   providers: [
+    AngularFirestore,
     StatusBar,
     SplashScreen,
+    AngularFireAuth,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

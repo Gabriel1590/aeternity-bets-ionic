@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border" >
+  <ion-toolbar color="aet">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #formulario="ngForm"> 
+    <div>
+      <ion-label class="white">Username</ion-label>
+      <ion-input type="text" placeholder="Enter your username"
+                name="userName" class="input"
+                [(ngModel)]="user.userName"
+                required>
+      </ion-input>
+    </div>
+
+    <div>
+      <ion-label class="white">Email</ion-label>
+      <ion-input type="email" placeholder="Enter your email"
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                name="email" class="input"
+                [(ngModel)]="user.email"
+                required>
+      </ion-input>
+    </div>
+
+    <div>
+      <ion-label class="white">Password</ion-label>
+      <ion-input type="password" class="input"
+                name="password" placeholder="Enter your password"
+                [(ngModel)]="user.password"
+                required>
+      </ion-input>
+    </div>
+
+    <div>
+      <ion-label class="white">Confirm password</ion-label>
+      <ion-input type="password" class="input"
+                name="confPassword" placeholder="Confirm your password"
+                [(ngModel)]="confPassword"
+                required>
+      </ion-input>
+    </div>
+  </form>
+  <ion-button expand="full" (click)="onRegister()"
+              mode="ios" color="aet" shape="round"
+              [disabled]="formulario.invalid" >
+    Create Account
+  </ion-button>
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border" >
+  <ion-toolbar color="aet">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="firstMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Aeternity Bets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #formulario="ngForm">
+    <div>
+      <ion-label class="white">Bet</ion-label> 
+      <ion-input name="betValue" type="number"
+                 placeholder="Enter your Bet" class="input" 
+                 [(ngModel)]="betValue" required>
+      </ion-input>
+      <ion-label class="white" *ngIf="betValue > balance">No enough funds</ion-label> 
+    </div>
+  </form>
+  <h1 class="ion-text-center {{color}}">{{place}}</h1>
+  <div class="container">
+    <ion-grid>
+      <h5 class="ion-text-center dacade">Higher or Lower than 5000</h5>
+      <h1 class="ion-text-center white">{{randomNumber}}</h1>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button color="aet" mode="ios" expand="full"
+                      size="large" shape="round" (click)="high()" 
+                      [disabled]="formulario.invalid || betValue > balance || betValue === 0">
+            High
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="aet" mode="ios" expand="full" 
+                      size="large" shape="round"  (click)="low()"
+                      [disabled]="formulario.invalid || betValue > balance || betValue === 0">
+            Low
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>  
+  </div>
+  <div>
+      <h4 class="white">Balance: {{balance}} AET</h4>
+  </div>
+  
+  <script src="https://unpkg.com/@aeternity/aepp-sdk@6.1.2/dist/aepp-sdk.browser-script.js"></script>
+</ion-content>
